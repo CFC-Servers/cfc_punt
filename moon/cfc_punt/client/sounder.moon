@@ -12,7 +12,7 @@ CFCPunt.getPitch = (ev) ->
         when ev > 5000 200
         else 255
 
-CFCPunt.onPunt = (_, ent)
+CFCPunt.onPunt = (_, ent) ->
     return unless CFCPunt.isEnabled\GetBool!
 
     phys = ent\GetPhysicsObject!
