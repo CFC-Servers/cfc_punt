@@ -1,16 +1,18 @@
+import random from math
 import sounds, soundCount from CFCPunt
 export CFCPunt
 
 CFCPunt.getSound = () -> sounds[random 1, soundCount]
 CFCPunt.getPitch = (ev) ->
-    switch ev
-        when ev > 50000 1
-        when ev > 40000 50
-        when ev > 30000 75
-        when ev > 20000 100
-        when ev > 10000 150
-        when ev > 5000 200
-        else 255
+    range = switch true
+        when ev > 50000 {1, 50}
+        when ev > 40000 {50, 75}
+        when ev > 30000 {75, 100}
+        when ev > 20000 {100, 125}
+        when ev > 10000 {125, 200}
+        else {200, 255}
+
+    random unpack range
 
 CFCPunt.onPunt = (_, ent) ->
     return unless CFCPunt.isEnabled\GetBool!
@@ -20,9 +22,11 @@ CFCPunt.onPunt = (_, ent) ->
 
     if IsValid phys then
         entVolume = phys\GetVolume!
-        pitch = getPitch entVolume
+        pitch = CFCPunt.getPitch entVolume
 
     soundPath = CFCPunt.getSound!
-    ent\EmitSound soundPath, 120, pitch, 1, CHAN_BODY
+
+    print soundPath, pitch
+    ent\EmitSound soundPath, 150, pitch, 1, CHAN_BODY
 
 hook.Add "GravGunPunt", "CFCPunt_ExpressDispleasure", CFCPunt.onPunt

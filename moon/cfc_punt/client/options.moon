@@ -1,3 +1,4 @@
+import AddToolCategory, AddToolMenuOption from spawnmenu
 export CFCPunt
 CFCPunt.isEnabled = CreateConVar "cfc_punt_enabled", 1, FCVAR_ARCHIVE, "Should enable CFC Punt", 0, 1
 
