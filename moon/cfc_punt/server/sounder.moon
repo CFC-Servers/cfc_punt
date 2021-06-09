@@ -43,8 +43,6 @@ hook.Add "GravGunPunt", "CFCPunt_ExpressDispleasure", (_, ent) ->
     ent\StopSound ent.playingPuntSound if playingSound
     ent.playingPuntSound = soundPath
 
-    print soundPath, entVolume, pitch
-
     net.Start "CFCPunt_ExpressDispleasure"
     net.WriteEntity ent
     net.WriteString soundPath
