@@ -11,7 +11,7 @@ CFCPunt.getPhysVolume = (ent) ->
     -- Put it right in the "normal" range if we can't figure it out
     return 30001 unless IsValid phys
 
-    phys\GetVolume!
+    phys\GetVolume! or 30001
 
 CFCPunt.getEntVolume = (ent) ->
     mins, maxes = ent\GetHitBoxBounds 0, 0
