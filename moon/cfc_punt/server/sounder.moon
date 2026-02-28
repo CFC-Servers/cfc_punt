@@ -34,6 +34,8 @@ CFCPunt.getPitch = (ev) ->
     random unpack range
 
 hook.Add "GravGunPunt", "CFCPunt_ExpressDispleasure", (_, ent) ->
+    return if debug.getinfo 3, "f" -- Ignore any lua-made hook calls, only get real gravgun punts
+
     entVolume = CFCPunt.getEntVolume ent
     pitch = CFCPunt.getPitch entVolume
 
